@@ -31,7 +31,6 @@ namespace Lab_1_MoC
                     C[line, j] = temp[j];
                 }
             }
-            
         }
     }
 }
