@@ -25,15 +25,30 @@ namespace Lab_1_MoC
         static public double[,] Pr_MC()
         {
             double[,] prMC = new double[C.GetLength(0), C.GetLength(1)];
-            for (int i = 0; i < M.Length; i++)
+            for (int i = 0; i < C.GetLength(0); i++)
             {
-                for (int j = 0; j < M.Length; j++)
+                for (int j = 0; j < C.GetLength(1); j++)
                 {
                     prMC[C[i, j],j] = M[j] * k[i] + prMC[C[i, j],j];
 
                 }
             }
             return prMC;
+        }
+         public double[,] PrConditional_MC()
+        {
+            double [] prC = Pr_CipherText();
+            double[,] prMC= Pr_MC();
+            double[,] prMC_Cond = new double[C.GetLength(0), C.GetLength(1)];
+            for (int i = 0; i < C.GetLength(0); i++)
+            {
+                for (int j = 0; j < C.GetLength(1); j++)
+                {
+                    prMC_Cond[i, j] = prMC[i, j] / prC[i];
+
+                }
+            }
+            return prMC_Cond;
         }
     }
 }
