@@ -8,7 +8,7 @@ namespace Lab_1_MoC
 {
     class Statisctics: InitialData
     {
-        static public double[] Pr_CipherText()
+        public double[] Pr_CipherText()
         {
             double[] prС = new double[C.GetLength(0)];
             for (int i = 0; i < C.GetLength(0); i++)
@@ -22,7 +22,7 @@ namespace Lab_1_MoC
             return prС;
         }
 
-        static public double[,] Pr_MC()
+        public double[,] Pr_MC()
         {
             double[,] prMC = new double[C.GetLength(0), C.GetLength(1)];
             for (int i = 0; i < C.GetLength(0); i++)
@@ -49,6 +49,23 @@ namespace Lab_1_MoC
                 }
             }
             return prMC_Cond;
+        }
+
+        public List<double> DeterministicFunction()
+        {
+            double[,] prMC_Cond = PrConditional_MC();
+            List<double> maxList = new List<double>();
+            for (int i = 0; i < prMC_Cond.GetLength(0); i++)
+            {
+                List<double> tempList = new List<double>();
+                for (int j = 0; j < prMC_Cond.GetLength(1); j++)
+                {
+                    tempList.Add(prMC_Cond[i, j]);
+
+                }
+                maxList.Add(tempList.IndexOf(tempList.Max()));
+            }
+            return maxList;
         }
     }
 }
