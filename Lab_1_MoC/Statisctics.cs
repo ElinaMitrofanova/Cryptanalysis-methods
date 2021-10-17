@@ -15,8 +15,9 @@ namespace Lab_1_MoC
             {
                 for (int j = 0; j < C.GetLength(1); j++)
                 {
-                    prС[C[i, j]] = M[i] * k[j] + prС[C[i, j]];
-                
+                    prС[C[i, j]] += Math.Round(M[j] * k[i],4);
+                    prС[C[i, j]] = Math.Round(prС[C[i, j]], 4);
+
                 }
             }
             return prС;
@@ -29,8 +30,8 @@ namespace Lab_1_MoC
             {
                 for (int j = 0; j < C.GetLength(1); j++)
                 {
-                    prMC[C[i, j],j] = M[j] * k[i] + prMC[C[i, j],j];
-
+                    prMC[C[i, j],j] += M[j] * k[i];
+                    prMC[C[i, j], j] = Math.Round(prMC[C[i, j], j], 4);
                 }
             }
             return prMC;
@@ -44,8 +45,7 @@ namespace Lab_1_MoC
             {
                 for (int j = 0; j < C.GetLength(1); j++)
                 {
-                    prMC_Cond[i, j] = prMC[i, j] / prC[i];
-
+                    prMC_Cond[i, j] = Math.Round(prMC[i, j] / prC[i],4);
                 }
             }
             return prMC_Cond;
@@ -66,6 +66,12 @@ namespace Lab_1_MoC
                 maxList.Add(tempList.IndexOf(tempList.Max()));
             }
             return maxList;
+        }
+        void StochasticMatrix()
+        {
+            List<double> deterministicFunction = DeterministicFunction();
+            double[,] stMatrix= new double[C.GetLength(0), C.GetLength(1)];
+
         }
     }
 }
