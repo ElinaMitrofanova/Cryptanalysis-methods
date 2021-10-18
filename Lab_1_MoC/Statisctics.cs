@@ -66,7 +66,6 @@ namespace Lab_1_MoC
 
        public double[,] StochasticMatrix()
         {
-            List<int> deterministicFunction = DeterministicFunction();
             double[,] prMC_Cond = PrConditional_MC();
             double[,] stMatrix = new double[C.GetLength(0), C.GetLength(1)];
             for (int i = 0; i < C.GetLength(0); i++)
