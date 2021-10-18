@@ -63,5 +63,31 @@ namespace Lab_1_MoC
             }
             return avgLoss;
         }
+
+       public double[,] StochasticMatrix()
+        {
+            List<int> deterministicFunction = DeterministicFunction();
+            double[,] prMC_Cond = PrConditional_MC();
+            double[,] stMatrix = new double[C.GetLength(0), C.GetLength(1)];
+            for (int i = 0; i < C.GetLength(0); i++)
+            { 
+                List<double> tempList = new List<double>();
+                for (int j = 0; j < C.GetLength(1); j++)
+                {
+                    tempList.Add(prMC_Cond[i, j]);
+                }
+                foreach ( var element in tempList)
+                {
+
+                    if (element == tempList.Max())
+                    {
+                       int  indx = tempList.IndexOf(element);
+                        stMatrix[i, indx] = 1 / tempList.Count(x => x == tempList.Max());
+                    }
+                }
+
+            }
+            return stMatrix;
+        }
     }
 }
