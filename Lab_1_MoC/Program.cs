@@ -17,20 +17,21 @@ namespace Lab_1_MoC
 
             Statisctics var6 = new Statisctics();
             double[,] prMC_Cond_6 = var6.PrConditional_MC();
-            for (int i = 0; i < prMC_Cond_6.GetLength(0); i++)
-            {
-                for (int j = 0; j < prMC_Cond_6.GetLength(1); j++)
-                {
-                    Console.Write(prMC_Cond_6[i, j] + "\t");
+            Display.DisplayTwoDimArrayInExcel(prMC_Cond_6, "result_PMC_Cond_6.xlsx");
 
-                }
-                Console.WriteLine();
-            }
+            double[,] st6 = var6.StochasticMatrix();
+            Display.DisplayTwoDimArrayInExcel(st6, "result_st_6.xlsx" );
 
 
             List<int> determFunc_6 = var6.DeterministicFunction();
-            double avgLoss_6 = var6.AvgDeterministic();
-            Console.WriteLine("Середні втрати детермiнiстичної функції: " + avgLoss_6);
+            Console.WriteLine("Deterministic function: ");
+            Display.DisplayList(determFunc_6);
+
+            double avgLossDet_6 = var6.AvgDeterministic();
+            Console.WriteLine();
+            Console.WriteLine("AvgDetLoss: " + avgLossDet_6);
+            double avgLossStoch_6 = var6.AvgStochastic();
+            Console.WriteLine("AvgStLoss: " + avgLossStoch_6);
 
             Console.WriteLine("--------------------------------------------------VARIANT 14----------------------------------------------------------");
             InitialData variant14 = new InitialData();
@@ -39,10 +40,19 @@ namespace Lab_1_MoC
 
             Statisctics var14 = new Statisctics();
             double[,] prMC_Cond_14 = var14.PrConditional_MC();
+            Display.DisplayTwoDimArrayInExcel(prMC_Cond_14, "result_PMC_Cond_14.xlsx");
+
+            double[,] st14 = var14.StochasticMatrix();
+            Display.DisplayTwoDimArrayInExcel(st6, "result_st_14.xlsx");
 
             List<int> determFunc_14 = var14.DeterministicFunction();
-            double avgLoss_14 = var14.AvgDeterministic();
-            Console.WriteLine("Середні втрати детермiнiстичної функції: " + avgLoss_14);
+            Console.WriteLine("Deterministic function: ");
+            Display.DisplayList(determFunc_14);
+
+            double avgLossDet_14 = var14.AvgDeterministic();
+            Console.WriteLine("AvgDetLoss: " + avgLossDet_14);
+            double avgLossStoch_14 = var14.AvgStochastic();
+            Console.WriteLine("AvgStLoss: " + avgLossStoch_14);
         }
     }
 }
